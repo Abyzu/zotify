@@ -1,4 +1,4 @@
-# import os
+import os
 from pathlib import PurePath, Path
 import time
 from typing import Optional, Tuple
@@ -98,7 +98,7 @@ def download_episode(episode_id) -> None:
 
             total_size = stream.input_stream.size
 
-            filepath = PurePath(download_directory).joinpath(f"{filename}.ogg")
+            filepath = os.path.join('audio',f"{filename}.ogg")
             if (
                 Path(filepath).is_file()
                 and Path(filepath).stat().st_size == total_size
@@ -132,7 +132,8 @@ def download_episode(episode_id) -> None:
                         if delta_want > delta_real:
                             time.sleep(delta_want - delta_real)
         else:
-            filepath = PurePath(download_directory).joinpath(f"{filename}.mp3")
+            
+            filepath = os.path.join('audio',f"{filename}.ogg")
             download_podcast_directly(direct_download_url, filepath)
 
     prepare_download_loader.stop()

@@ -86,7 +86,7 @@ class Config:
         system_paths = {
             'win32': Path.home() / 'AppData/Roaming/Zotify',
             'linux': Path.home() / '.config/zotify',
-            'darwin': Path.home() / 'Library/Application Support/Zotify'
+            'darwin': Path.cwd() / 'Config'
         }
         if sys.platform not in system_paths:
             config_fp = Path.cwd() / '.zotify/config.json'
@@ -154,7 +154,7 @@ class Config:
     @classmethod
     def get_root_path(cls) -> str:
         if cls.get(ROOT_PATH) == '':
-            root_path = PurePath(Path.home() / 'Music/Zotify Music/')
+            root_path = PurePath(Path.cwd() / 'Music/Zotify Music/')
         else:
             root_path = PurePath(Path(cls.get(ROOT_PATH)).expanduser())
         Path(root_path).mkdir(parents=True, exist_ok=True)
@@ -163,7 +163,7 @@ class Config:
     @classmethod
     def get_root_podcast_path(cls) -> str:
         if cls.get(ROOT_PODCAST_PATH) == '':
-            root_podcast_path = PurePath(Path.home() / 'Music/Zotify Podcasts/')
+            root_podcast_path = PurePath(Path.cwd() / 'Music/')
         else:
             root_podcast_path = PurePath(Path(cls.get(ROOT_PODCAST_PATH)).expanduser())
         Path(root_podcast_path).mkdir(parents=True, exist_ok=True)
@@ -223,7 +223,7 @@ class Config:
             system_paths = {
                 'win32': Path.home() / 'AppData/Roaming/Zotify',
                 'linux': Path.home() / '.local/share/zotify',
-                'darwin': Path.home() / 'Library/Application Support/Zotify'
+                'darwin': Path.cwd() / 'Library/Application Support/Zotify'
             }
             if sys.platform not in system_paths:
                 song_archive =  PurePath(Path.cwd() / '.zotify/.song_archive')
@@ -244,7 +244,7 @@ class Config:
             system_paths = {
                 'win32': Path.home() / 'AppData/Roaming/Zotify',
                 'linux': Path.home() / '.local/share/zotify',
-                'darwin': Path.home() / 'Library/Application Support/Zotify'
+                'darwin': Path.cwd() / 'Config'
             }
             if sys.platform not in system_paths:
                 credentials_location = PurePath(Path.cwd() / '.zotify/credentials.json')
